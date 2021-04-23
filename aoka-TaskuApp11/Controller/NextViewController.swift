@@ -9,19 +9,19 @@ import UIKit
 
 class NextViewController: UIViewController {
     
-   private var prefectureData = PrefectureData()
-   var value:Int?
+    private var prefectureNames = PrefectureData.prefectureNames
+    private(set) var selectedPrefectureName: String?
 }
 
 extension NextViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       prefectureData.prefecturesArray.count
+        prefectureNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath)
-        cell.textLabel?.text = prefectureData.prefecturesArray[indexPath.row]
+        cell.textLabel?.text = prefectureNames[indexPath.row]
         return cell
     }
 }
@@ -29,7 +29,7 @@ extension NextViewController: UITableViewDataSource {
 extension NextViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        value = Int(indexPath.row) 
+        selectedPrefectureName = prefectureNames[indexPath.row]
         performSegue(withIdentifier: "Segue", sender: nil)
     }
 }
