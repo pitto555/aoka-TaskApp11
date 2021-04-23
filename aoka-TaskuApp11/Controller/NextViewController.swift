@@ -10,7 +10,7 @@ import UIKit
 class NextViewController: UIViewController {
     
    private var prefectureData = PrefectureData()
-   var value:Int?
+   private(set) var selectedPrefectureName: String?
 }
 
 extension NextViewController: UITableViewDataSource {
@@ -29,7 +29,7 @@ extension NextViewController: UITableViewDataSource {
 extension NextViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        value = Int(indexPath.row) 
+        selectedPrefectureName = prefectureData.prefecturesArray[indexPath.row]
         performSegue(withIdentifier: "Segue", sender: nil)
     }
 }
